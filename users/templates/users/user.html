@@ -1,0 +1,40 @@
+{% extends "users/layout.html" %}
+
+{% block body %}
+
+    <p>Welcome, {{ request.user.username }}</p>
+
+    <a class="navbar___item" href="{% url 'users:logout' %}">Log Out</a>
+
+    <a class="navbar___item" href="{% url 'playlist:index' %}">Back to Playlists</a>
+
+<!--
+    {% for item in playlistListed %}
+    <ul>
+        <li>{{item}}</li>
+    </ul>
+    {% endfor %}
+-->
+    <script>
+        function copyLink(){
+            var copyText=document.getElementById("Recent_Playlists");
+            var para=document.getElementById("Link_Para");
+            //var link=document.getElementById("link_button");
+            //link.value="Get Link to "+copyText.
+            para.innerHTML=copyText.value;
+
+            //alert("Here is the link: "+copyText.value);
+        }
+    </script>
+    <form id="frm1">
+        <label for="Recent_Playlists">My Recently Downloaded Playlists</label>
+        <select name="Recent_Playlists" id="Recent_Playlists">
+            {% for item in playlistListed %}
+                <option value="{{item.playUri}}">{{item.playName}}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <input id="link_button" type="button" value="Get Link!" onclick="copyLink()">
+    </form>
+    <div id="Link_Para"></div>
+{% endblock %}

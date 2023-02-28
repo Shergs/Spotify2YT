@@ -1,0 +1,11 @@
+{% extends "playlist/layout.html" %}
+
+{% block body %}
+    <h3>Add Playlist</h3>
+    <form action="{% url 'playlist:add' %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input class="main__btn" type="submit">
+    </form>
+    <a class="navbar___item" href="{% url 'playlist:index' %}">View playlist</a>
+{% endblock %}

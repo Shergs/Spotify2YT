@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Download</title>
+</head>
+<body>
+    <h1>Download your playlist folder!</h1>
+    {% for play in playlistENG %}
+    <a href="{% url 'playlist:download' filename='zipPlaylist.zip' %}">Download!</a>
+    {% endfor %}
+</body>
+</html>

@@ -1,0 +1,49 @@
+{% extends "playlist/layout.html" %}
+
+    
+{% block body %}
+    <h3>PLAYLIST:</h3>
+    {% for playlist in playlistENG %}
+        <h3>{{playlist}}</h3>
+    {% endfor %}
+    {% if playlistENG.0 != "" %}
+    <!---
+    <a class="navbar___item" href="{% url 'playlist:download' filename='zipPlaylist.zip' %}">Download!</a>-->
+    <form action="{% url 'playlist:download' filename='zipPlaylist.zip' %}">
+        <button class=main__btn type="submit">Download!</button>
+    </form>
+    {% endif %}
+
+
+
+    <a class="navbar___item" href="{% url 'playlist:add' %}">Add a new playlist</a>
+    <!--
+    {% for item in playlistListed %}
+    <ul>
+        <li>{{item}}</li>
+    </ul>
+    {% endfor %}
+-->
+    <script>
+        function copyLink(){
+            var copyText=document.getElementById("Recent_Playlists");
+            var para=document.getElementById("Link_Para");
+            //var link=document.getElementById("link_button");
+            //link.value="Get Link to "+copyText.
+            para.innerHTML=copyText.value;
+
+            //alert("Here is the link: "+copyText.value);
+        }
+    </script>
+    <form id="frm1">
+        <label for="Recent_Playlists">Recently Downloaded Playlists</label>
+        <select name="Recent_Playlists" id="Recent_Playlists">
+            {% for item in playlistListed %}
+                <option value="{{item.playUri}}">{{item.playName}}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        <input id="link_button" type="button" value="Get Link!" onclick="copyLink()">
+    </form>
+    <div id="Link_Para"></div>
+{% endblock %}
