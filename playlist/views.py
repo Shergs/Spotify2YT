@@ -103,7 +103,7 @@ def add(request):
             shutil.rmtree(f'{playENG}', ignore_errors=True)
 
             #print("COMPLETED ALL OPERATIONS!",request.session["playlistname"],request.session["username"],request.session["clientID"],request.session["clientSecret"])
-            #i=Playlist.objects.all().count()
+            
             last_ten = Playlist.objects.all().order_by('-id')[:10]
             #last_ten_in_ascending_order = reversed(last_ten)
             last_ten_in_ascending_order=last_ten
